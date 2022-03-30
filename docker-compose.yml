@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: node-app
+    links:
+      - mongodb
+    networks:
+      - app-network
+    environment:
+      MONGODB_URI: "mongodb://mongodb/conduit"
+  mongodb:
+    image: mongo:3.6.18
+    ports:
+      - "27017"
+    container_name: mongodb
+    volumes:
+      - ./mongo_db/:/data/db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

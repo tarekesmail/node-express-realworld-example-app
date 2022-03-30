@@ -3,6 +3,8 @@ logs
 *.log
 .DS_Store
 
+mongo_db
+
 npm-debug.log*
 
 # Runtime data
